@@ -4,7 +4,7 @@ const Content = ({ title } : any ) => (
       <div className="pricing-box max-w-lg mx-auto rounded-lg shadow overflow-hidden lg:max-w-none lg:flex">
         <div className="bg-white dark:bg-gray-800 px-6 py-8 lg:flex-shrink-1 lg:p-12">
           <h3 className="text-2xl leading-8 font-extrabold text-gray-900 sm:text-3xl sm:leading-9 dark:text-white">
-            Zero Commission by {title || 'usage'}
+            Template : {title || 'text'}
           </h3>
           <p className="mt-6 text-base leading-6 text-gray-500 dark:text-gray-200">
             Start selling online for free with all the features you need to
@@ -220,7 +220,7 @@ const Content = ({ title } : any ) => (
         </div>
       </div>
     </div>
-    <div className="w-full md:w-4/12 md:px-2 mb-6 md:mb-0">
+    {/* <div className="w-full md:w-4/12 md:px-2 mb-6 md:mb-0">
       <div className="shadow-lg rounded-2xl bg-white dark:bg-gray-800 p-4">
         <p className="text-gray-800 dark:text-gray-50 text-xl font-medium mb-4">
           Entreprise
@@ -555,7 +555,7 @@ const Content = ({ title } : any ) => (
           </li>
         </ul>
       </div>
-    </div>
+    </div> */}
   </div>
 );
 
