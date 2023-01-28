@@ -1,46 +1,34 @@
 import HomeIcon from './icons/home';
-import BillsIcon from './icons/bills';
-import AnalyticsIcon from './icons/analytics';
-import MonitoringIcon from './icons/monitoring';
-import DemographicsIcon from './icons/demographics';
-import ApplicationsIcon from './icons/applications';
+import MessageIcon from './icons/message';
+import SettingsIcon from './icons/settings';
 import DocumentationIcon from './icons/documentation';
+import StackpathIcon from './icons/Stackpath';
 
 const data = [
   {
-    title: 'Home',
+    title: 'Dashboard',
     icon: <HomeIcon />,
     link: '/',
   },
   {
-    title: 'Bills',
-    icon: <BillsIcon />,
-    link: '/admin/bills',
+    title: 'Stack Paths',
+    icon: <StackpathIcon />,
+    link: '/user/stackpath',
   },
   {
-    title: 'Applications',
-    icon: <ApplicationsIcon />,
-    link: '/admin/applications',
+    title: 'Messages',
+    icon: <MessageIcon />,
+    link: '/user/messages',
   },
   {
-    title: 'Monitoring',
-    icon: <MonitoringIcon />,
-    link: '/admin/monitoring',
-  },
-  {
-    title: 'Demographics',
-    icon: <DemographicsIcon />,
-    link: '/admin/demographics',
-  },
-  {
-    title: 'Analytics',
-    icon: <AnalyticsIcon />,
-    link: '/admin/analytics',
+    title: 'Settings',
+    icon: <SettingsIcon />,
+    link: '/user/settings',
   },
   {
     title: 'Documentation',
     icon: <DocumentationIcon />,
-    link: '/admin/documentation',
+    link: '/user/documentation',
   },
 ];
 
