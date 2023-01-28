@@ -1,13 +1,13 @@
 {
-  "name": "dashboard-v5-nextjs",
+  "name": "learning-platform-web",
   "version": "1.0.0",
   "author": {
     "name": "Enoch Ndika"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/salvia-kit/dashboard-v5-nextjs.git"
+    "url": "https://github.com/DevSecOpsNext/learning-platform-web.git"
   },
   "keywords": [
     "ui",
