@@ -1,4 +1,4 @@
-export const FolderIcon = ({ className }) => (
+export const FolderIcon = ({ className } : any ) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={`text-yellow-400 ${className || 'h-5 w-5 mt-0.5'}`}
@@ -14,7 +14,7 @@ export const FolderIcon = ({ className }) => (
   </svg>
 );
 
-export const FileIcon = ({ className }) => (
+export const FileIcon = ({ className } : any ) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className || 'h-5 w-5'}
@@ -31,7 +31,7 @@ export const FileIcon = ({ className }) => (
   </svg>
 );
 
-export const JsIcon = ({ className }) => (
+export const JsIcon = ({ className } : any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 48 48"

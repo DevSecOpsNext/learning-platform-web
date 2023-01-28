@@ -15,7 +15,7 @@ const style = {
 
 export default function SidenavItems() {
   const { asPath } = useRouter();
-  const { open } = useToggle();
+  const { open } : any = useToggle();
   return (
     <ul className="md:pl-5">
       <li>

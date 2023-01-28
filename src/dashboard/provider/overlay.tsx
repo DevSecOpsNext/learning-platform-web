@@ -6,6 +6,6 @@ const style = {
 
 // The overlay will only be visible on small screens to emphasize the focus on the side navigation when it is open.
 export default function Overlay() {
-  const { open } = useToggle();
+  const { open } : any = useToggle();
   return <div className={open ? style.overlay : ''} />;
 }

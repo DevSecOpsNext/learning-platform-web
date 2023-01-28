@@ -1,4 +1,4 @@
-const Content = ({ title }) => (
+const Content = ({ title } : any ) => (
   <div className="flex flex-col flex-wrap sm:flex-row">
     <div className="relative max-w-screen-xl mx-auto mb-12">
       <div className="pricing-box max-w-lg mx-auto rounded-lg shadow overflow-hidden lg:max-w-none lg:flex">

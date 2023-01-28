@@ -1,7 +1,7 @@
 import { useToggle } from '../provider/context';
 
 export default function TopNavigation() {
-  const { toggle } = useToggle();
+  const { toggle } : any = useToggle();
   return (
     <header className="bg-white h-16 items-center relative shadow w-full z-10 md:h-20">
       <div className="flex flex-center flex-col h-full justify-center mx-auto px-3 relative">
