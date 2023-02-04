@@ -1,5 +1,15 @@
+import { useSession, signIn, signOut } from 'next-auth/react';
 import Content from '../../components/content';
 
 export default function SettingsPage() {
-  return <Content title="Settings" />;
+  const { data: session } = useSession()
+
+  if(session){
+  return <Content title={'Settings - ' + session.user?.name} />;
+  }
+  return (
+    <>
+      Not authorised user!
+    </>
+  )
 }

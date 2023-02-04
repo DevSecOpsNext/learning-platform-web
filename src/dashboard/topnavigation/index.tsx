@@ -1,7 +1,10 @@
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { useToggle } from '../provider/context';
 
 export default function TopNavigation() {
-  const { toggle } : any = useToggle();
+  const { toggle }: any = useToggle();
+  const { data: session } = useSession()
+
   return (
     <header className="bg-white h-16 items-center relative shadow w-full z-10 md:h-20">
       <div className="flex flex-center flex-col h-full justify-center mx-auto px-3 relative">
@@ -20,6 +23,20 @@ export default function TopNavigation() {
             </div>
           </div>
           <div className="flex items-center justify-end ml-5 p-1 relative w-full sm:mr-0 sm:right-auto">
+
+            <div className="block pr-5">
+              {session ? (
+                <button color='primary' onClick={() => signOut()}>Sign out</button>
+              ) :
+                (
+                  <button onClick={() => signIn('asgardeo')}>Sign in</button>
+                )
+              }
+
+
+            </div>
+
+
             <a href="#" className="block pr-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,11 +63,18 @@ export default function TopNavigation() {
               </svg>
             </a>
             <a href="#" className="block relative">
-              <img
+              {session ? 
+              (<img
+                alt="profile"
+                src={session.user?.image || "/images/1.png"}
+                className="h-10 mx-auto object-cover rounded-full w-10"/>
+              ) : 
+              (<img
                 alt="profile"
                 src="/images/1.png"
-                className="h-10 mx-auto object-cover rounded-full w-10"
-              />
+                className="h-10 mx-auto object-cover rounded-full w-10"/>
+              )
+              }
             </a>
           </div>
         </div>
