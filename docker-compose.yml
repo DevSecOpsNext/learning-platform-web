@@ -1,0 +1,22 @@
+
+version: '3.1'
+
+services:
+  database:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    env_file:
+      - ./.env.local
+    volumes:
+      - type: bind
+        source: ./data
+        target: /data/db
+  app:
+    image: learning-platform-web
+    build: 
+      context: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+    env_file:
+      - ./.env.local
