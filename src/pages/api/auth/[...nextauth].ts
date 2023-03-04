@@ -1,5 +1,5 @@
 import NextAuth from "next-auth"
-import AsgardeoProvider from "../../../authentication/providers/asgardeo"
+import AsgardeoProvider from "../../../lib/authentication/providers/asgardeo"
 
 export const authOptions = {
   providers: [
