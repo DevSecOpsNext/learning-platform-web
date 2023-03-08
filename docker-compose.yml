@@ -1,15 +1,7 @@
 
-version: '3.1'
+version: '3.8'
 
 services:
-  database:
-    image: mongodb/mongodb-community-server:6.0-ubi8
-    env_file:
-      - ./.env.local
-    volumes:
-      - type: bind
-        source: ./data
-        target: /data/db
   app:
     image: learning-platform-web
     build: 
@@ -17,6 +9,19 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - database
+      - db
     env_file:
       - ./.env.local
+  
+  db:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+      - mongodb-data:/data/db
+    
+volumes:
+  mongodb-data:
