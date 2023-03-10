@@ -8,6 +8,7 @@ export const authOptions = {
       clientSecret: `${process.env.ASGARDEO_SECRET}`,
     }, `${process.env.ASGARDEO_ORG}`),
   ],
+  secret: process.env.SECRET,
 }
 
 export default NextAuth(authOptions)

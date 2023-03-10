@@ -1,0 +1,17 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node-mongo
+{
+	"name": "DevSecOpsNext - Next.js & MongoDB",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mongodb.mongodb-vscode"
+			]
+		}
+	},
+	"forwardPorts": [3000, 27017],
+	"postCreateCommand": "yarn install"
+}
