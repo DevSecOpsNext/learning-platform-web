@@ -10,11 +10,15 @@ services:
       - 3000:3000
     depends_on:
       - db
+    environment:
+      - SECRET=development
+      - NEXTAUTH_URL=http://localhost:3000/api/auth
+      - MONGODB_URI=mongodb://user:pass@db:27017
     env_file:
       - ./.env.local
   
   db:
-    image: mongodb/mongodb-community-server:6.0-ubi8
+    image: mongo
     ports:
       - 27017:27017
     environment:
