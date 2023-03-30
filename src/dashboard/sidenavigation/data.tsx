@@ -30,6 +30,11 @@ const data = [
     icon: <DocumentationIcon />,
     link: '/user/documentation',
   },
+  {
+    title: 'Stack',
+    icon: <DocumentationIcon />,
+    link: '/user/stacks',
+  },
 ];
 
 export default data;
