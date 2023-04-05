@@ -37,3 +37,6 @@ yarn-error.log*
 
 # data files (i.e. mongodb data)
 data
+
+# typescript complied code
+dist/
