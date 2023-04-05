@@ -1,9 +1,6 @@
 {
-  "name": "learning-platform-web",
+  "name": "frontend",
   "version": "1.0.0",
-  "author": {
-    "name": "Enoch Ndika"
-  },
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
