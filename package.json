@@ -6,12 +6,16 @@
   ],
   "scripts": {
     "frontend-dev": "yarn workspace frontend dev",
-    "gateway-dev": "yarn workspace gateway start",
+    "gateway-dev": "yarn workspace gateway dev",
     "dev": "concurrently --kill-others-on-fail \"yarn frontend-dev\"  \"yarn gateway-dev\""
   },
   "repository": "https://github.com/DevSecOpsNext/learning-platform-web.git",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "concurrently": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "typescript": "^5.0.3"
   }
 }
