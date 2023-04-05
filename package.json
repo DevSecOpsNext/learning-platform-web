@@ -1,7 +1,17 @@
 {
   "name": "learning-platform-monorepo",
   "private": true,
-  "workspaces": ["services/*"],
+  "workspaces": [
+    "services/*"
+  ],
+  "scripts": {
+    "frontend-dev": "yarn workspace frontend dev",
+    "gateway-dev": "yarn workspace gateway start",
+    "dev": "concurrently --kill-others-on-fail \"yarn frontend-dev\"  \"yarn gateway-dev\""
+  },
   "repository": "https://github.com/DevSecOpsNext/learning-platform-web.git",
-  "license": "Apache 2.0"
+  "license": "Apache 2.0",
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  }
 }
