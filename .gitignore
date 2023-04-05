@@ -39,4 +39,4 @@ yarn-error.log*
 data
 
 # typescript complied code
-dist/
+dist
