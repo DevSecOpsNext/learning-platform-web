@@ -5,9 +5,11 @@
     "services/*"
   ],
   "scripts": {
-    "frontend-dev": "yarn workspace frontend dev",
-    "gateway-dev": "yarn workspace gateway dev",
-    "dev": "concurrently --kill-others-on-fail \"yarn frontend-dev\"  \"yarn gateway-dev\""
+    "frontend:dev": "yarn workspace frontend dev",
+    "gateway:dev": "yarn workspace gateway dev",
+    "platform-api:dev": "yarn workspace platform-api dev",
+    "content-api:dev": "yarn workspace content-api dev",
+    "dev": "concurrently --kill-others-on-fail \"yarn frontend:dev\"  \"yarn gateway:dev\" \"yarn platform-api:dev\" \"yarn content-api:dev\""
   },
   "repository": "https://github.com/DevSecOpsNext/learning-platform-web.git",
   "license": "Apache-2.0",
