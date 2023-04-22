@@ -3,18 +3,38 @@ type Tenant {
     account : String
 }
 
-type Stack {
-    id: ID!
-    title: String
+type User {
+    id : ID!
+    roles : [String]
+    tenants : [Tenant]
 }
 
-type Event {} # stores github actions
+type Stack {
+    id: ID!
+    title: String!
+    body: String # this needs to break down further, how to implement a user story / tasks etc.
+    discord: String
+    skill: String # easy, intermediate, etc..
+    categories: [String] # tags
+}
 
-type StudentStack {
+type Event {
+    id: ID!
+    title: String!
+    type: String!
+} # stores github actions
+
+type StudentStack { # This would be similar to a User story in a real world developement project. Each story has multiple tasks to complete.
     id: ID!
     title: String # devops-a
     tenant: Tenant # personal , org-a
-    progression : [String] # task 1 , task 2 , task N..
+    
+    # progression:
+    # Task 1 , Task 2 , Task N.. For now student can progress through each task without a review. 
+    # Each task needs to be completed using a PULL REQUEST for platform to mark it as completed, also the platform can automate how to review each PR.
+    # Platform can auto complete each PULL REQUEST belong to a Task if there are no comments or reviews pending.
+    progression : [String]
+    
     repository : String # github.com/user-a/devops-a , linking repository when new stack starts, install Github app or update repos via github apps
 }
 
@@ -29,9 +49,3 @@ type Publisher {
 }
 
 type Mentor {}
-
-type User {
-    id : ID!
-    roles : [String]
-    tenants : [Tenant]
-}
