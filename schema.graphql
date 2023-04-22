@@ -1,0 +1,37 @@
+type Tenant {
+    id: ID!
+    account : String
+}
+
+type Stack {
+    id: ID!
+    title: String
+}
+
+type Event {} # stores github actions
+
+type StudentStack {
+    id: ID!
+    title: String # devops-a
+    tenant: Tenant # personal , org-a
+    progression : [String] # task 1 , task 2 , task N..
+    repository : String # github.com/user-a/devops-a , linking repository when new stack starts, install Github app or update repos via github apps
+}
+
+type Student {
+    user : User
+    stacks : [StudentStack] # in-progress => "DevOps A"
+}
+
+type Publisher {
+    user : User
+    stacks : [Stack] # owning and subscribed
+}
+
+type Mentor {}
+
+type User {
+    id : ID!
+    roles : [String]
+    tenants : [Tenant]
+}
