@@ -9,11 +9,15 @@ const port = process.env.PORT || 3001;
 
 app.use(json());
 
+app.get('/', (req: Request, res: Response) => {
+  res.status(200).send("GraphQL API gateway!")
+})
+
 const gateway = new ApolloGateway({
   supergraphSdl: new IntrospectAndCompose({
     subgraphs: [
-      { name: "platform", url: "http://localhost:3002" },
-      { name: "content", url: "http://localhost:3003" },
+      { name: "platform", url: "http://localhost:3002/graphql" },
+      { name: "content", url: "http://localhost:3003/graphql" },
     ],
   }),
 });
@@ -24,10 +28,6 @@ const server = new ApolloServer({
 
 await server.start();
 app.use(expressMiddleware(server));
-
-app.get('/', (req: Request, res: Response) => {
-  res.status(200).send("GraphQL API gateway!")
-})
 
 app.listen(port, () => {
   console.log(`⚡️[gateway]: running at http://localhost:${port}`);
