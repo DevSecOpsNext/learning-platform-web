@@ -13,14 +13,14 @@ app.use(json());
 // The GraphQL schema
 const typeDefs = gql`
   type Query {
-    hello: String
+    helloContent: String
   }
 `;
 
 // A map of functions which return data for the schema.
 const resolvers = {
   Query: {
-    hello: () => 'world',
+    helloContent: () => 'Content API!',
   },
 };
 
