@@ -17,16 +17,47 @@ app.get('/', (req: Request, res: Response) => {
 // The GraphQL schema
 const typeDefs = gql`
   type Query {
-    helloContent: String
+    getStackList: [Stack],
+    getStackById(id: Int!): Stack,
+    searchStacksByTitle(title: String!): [Stack!]!
   }
+
+  type Stack {
+    id: String,
+    title: String,
+    body: String,
+    discord: String,
+    skill: String,
+    category: [String]
+  }
+
 `;
 
-// A map of functions which return data for the schema.
+const stackList = [
+  { id: 1, title: 'kubernetes basic pipelines 1', body: 'johndoe@example.com', discord: 'https://discord.gg/2YHSAey', skill: 'kubernetes', category: ['kubernetes', 'devops', 'cloud'] },
+  { id: 2, title: 'kubernetes basic pipelines 2', body: 'johndoe@example.com', discord: 'https://discord.gg/2YHSAey', skill: 'kubernetes', category: ['kubernetes', 'devops', 'cloud'] },
+  { id: 3, title: 'kubernetes basic pipelines 3', body: 'johndoe@example.com', discord: 'https://discord.gg/2YHSAey', skill: 'kubernetes', category: ['kubernetes', 'devops', 'cloud'] },
+];
+
 const resolvers = {
   Query: {
-    helloContent: () => 'Content API!',
+    getStackList: () => {       
+      return stackList;
+    },
+    getStackById: (_: any, { id }: { id: number }) => {
+      return stackList.find((stack) => stack.id === id);
+    },
+    searchStacksByTitle: (_: any, { title }: { title: string }) => {
+      const searchTerm = title.toLowerCase();      
+      const matchingStacks = stackList.filter(stack => {
+        const lowerCaseName = stack.title.toLowerCase();
+        return lowerCaseName.includes(searchTerm);
+      });
+      return matchingStacks;
+    },
   },
 };
+
 
 const server = new ApolloServer({
     schema: buildSubgraphSchema({ typeDefs, resolvers }),
