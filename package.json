@@ -10,7 +10,7 @@
     "gateway:dev": "yarn workspace gateway dev",
     "platform-api:dev": "yarn workspace platform-api dev",
     "content-api:dev": "yarn workspace content-api dev",
-    "middleware-jwtvalidator": "yarn workspace @devsecopsnext/middleware-jwtvalidator dev",
+    "middleware-jwtvalidator": "yarn workspace @devsecopsnext/middleware-jwtvalidator build",
     
     "dev": "concurrently --kill-others-on-fail \"yarn frontend:dev\"  \"yarn gateway:dev\" \"yarn platform-api:dev\" \"yarn content-api:dev\""
   },

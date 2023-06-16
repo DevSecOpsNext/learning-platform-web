@@ -3,11 +3,14 @@ import 'dotenv/config';
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloGateway, IntrospectAndCompose } from "@apollo/gateway";
+import {authorize, validateScope} from './authorize.js';
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
 
 app.use(json());
+app.use(authorize);
+//app.use(validateScope);
 
 app.get('/', (req: Request, res: Response) => {
   res.status(200).send("GraphQL API gateway!")

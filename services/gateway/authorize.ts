@@ -1,12 +1,12 @@
-const jwt = require('jsonwebtoken');
-const jwksClient = require('jwks-rsa');
+import { verify } from 'jsonwebtoken';
+import jwksClient from 'jwks-rsa';
 
-const getPublicKey = (header, callback) => {
+const getPublicKey = (header:any, callback:any) => {
   const client = jwksClient({
     jwksUri: process.env.JWKS_ENDPOINT || 'https://api.asgardeo.io/t/devsecopsnext/oauth2/jwks'
   });
 
-  client.getSigningKey(header.kid, (err, key) => {
+  client.getSigningKey(header.kid, (err, key:any) => {
     console.log('Get signing key :', key);
     if(key){
       const signingKey = key.publicKey || key.rsaPublicKey;
@@ -17,17 +17,17 @@ const getPublicKey = (header, callback) => {
   });
 }
 
-const verifyToken = (token, callback) => {
+const verifyToken = (token:any, callback:any) => {
   const options = {
     audience: process.env.AUDIENCE || 'Xd5x1efqK0uxF4YS5QhO1qhnQMka',
     issuer: process.env.TOKEN_ENDPOINT || 'https://api.asgardeo.io/t/devsecopsnext/oauth2/token'
   };
 
   console.log('Verify token');
-  jwt.verify(token, getPublicKey, callback);
+  verify(token, getPublicKey, callback);
 };
 
-const authorize = (req, res, next) => {
+export const authorize = (req:any, res:any, next:any) => {
   const authorizationHeader = req.headers.authorization;
   if (!authorizationHeader) {
     console.log('No authorization header');
@@ -44,7 +44,7 @@ const authorize = (req, res, next) => {
   console.log('Valid authorization header');
 
   try {
-    verifyToken(token, (err, decoded) => {
+    verifyToken(token, (err:any, decoded:any) => {
       if (err) {
         console.log('Invalid JWT:', err);
         res.sendStatus(401);
@@ -55,14 +55,14 @@ const authorize = (req, res, next) => {
     });    
 
   } catch (error) {
-    console.log('Error occured while verifying token :', err);
+    console.log('Error occured while verifying token :', error);
     return;
   }
 };
 
 
 // Define middleware function to validate scope of GraphQL queries
-const validateScope = (req, res, next) => {
+export const  validateScope = (req:any, res:any, next:any) => {
   const { query } = req.body;
   const scopes = req.scopes || '';
   
@@ -75,3 +75,4 @@ const validateScope = (req, res, next) => {
   }
   next();
 };
+
