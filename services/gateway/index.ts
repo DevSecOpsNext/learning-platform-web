@@ -4,12 +4,13 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloGateway, IntrospectAndCompose } from "@apollo/gateway";
 import {authorize, validateScope} from './authorize.js';
+import cors from 'cors';
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
 
 app.use(json());
-app.use(authorize);
+//app.use(authorize);
 //app.use(validateScope);
 
 app.get('/', (req: Request, res: Response) => {
@@ -26,11 +27,14 @@ const gateway = new ApolloGateway({
 });
 
 const server = new ApolloServer({
-  gateway,
+  gateway,  
 });
 
 await server.start();
-app.use(expressMiddleware(server));
+app.use(
+  cors<cors.CorsRequest>({ origin: ['http://localhost:3000', 'https://studio.apollographql.com'] }),
+  expressMiddleware(server)  
+  );
 
 app.listen(port, () => {
   console.log(`⚡️[gateway]: running at http://localhost:${port}`);
