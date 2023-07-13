@@ -16,9 +16,9 @@ function SearchResults({ results }) {
           </thead>
           <tbody>
             {results.map((result) => (
-              <tr key={result._id}>
+              <tr key={result.id}>
                 <td>
-                  <Link href={`/user/stacks/${result._id}`}>
+                  <Link href={`/user/stacks/${result.id}`}>
                     <a>{result.title}</a>
                 </Link>
                </td>
