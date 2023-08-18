@@ -9,9 +9,9 @@ function DetailView({ item }) {
       <p>{item.categorisation}</p>
       <p>{item.skill_level}</p>
       <p>
-        <a href={item.discord}>Discord</a>
+        <a href={item.discord}>{item.discord}</a>
       </p>
-      <p>{item.conent}</p>
+      <p>{item.content}</p>
     </div>
   );
 }
@@ -20,16 +20,36 @@ function StackDetails() {
   const [results, setResults] = useState([]);
   const router = useRouter();
   const stackid = router.query.id;
+  const stackquery = `
+    query {
+      getStackById(id: ${stackid}) {
+        id
+        body
+        title
+        skill
+        discord
+        category
+        content
+      }        
+    }
+`;
+console.log("stackquery : " + stackquery);
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/api/stacks/' + stackid) //TODO need to change this to parameterized url
-      .then((response) => {
-        console.log(response.data);
-        setResults(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    axios.post('  http://localhost:3001/', { //TODO Need to change this to parameterized url
+    query: stackquery
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      console.log(response.data.data.getStackById);
+      setResults(response.data.data.getStackById);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
   }, []);
   return (
     <div>

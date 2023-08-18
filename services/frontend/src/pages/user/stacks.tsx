@@ -7,16 +7,50 @@ function SearchApp() {
   const [results, setResults] = useState([]);
   const [data, setData] = useState([]);
   console.log("SearchApp");
-  const handleSearch = (query) => {
-      axios.get('http://localhost:3000/api/stacks?&title=' + query) //TODO Need to change this to parameterized url
-        .then(response => {
-          console.log(response.data);
-          setResults(response.data);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-  };
+
+
+  const handleSearch = (title) => {
+    //how to invoke graphql query using axios
+    
+    const stackquery = `
+    query {
+      searchStacksByTitle (title:"${title}") {
+        id
+        body
+        title
+        skill
+        discord
+        category
+      }
+    }
+`;
+
+console.log("stackquery : " + stackquery);
+
+axios.post('  http://localhost:3001/', { //TODO Need to change this to parameterized url
+  query: stackquery
+}, {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => {
+  console.log(response.data.data.searchStacksByTitle);
+  setResults(response.data.data.searchStacksByTitle);
+})
+.catch(error => {
+  console.error(error);
+});
+
+  //     axios.get('http://localhost:3000/api/stacks?&title=' + title) //TODO Need to change this to parameterized url
+  //       .then(response => {
+  //         console.log(response.data);
+  //         setResults(response.data);
+  //       })
+  //       .catch(error => {
+  //         console.error(error);
+  //       });
+   };
 
   return (
     <div>
